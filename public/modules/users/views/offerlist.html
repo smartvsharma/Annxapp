@@ -1,0 +1,87 @@
+ <aside class="right-side" ng-init="offerlist()">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                 <h1>
+                        Offer  Listing          
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="/#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+                                            
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box-body table-responsive">
+                                      
+                                    <div class="alert alert-success alert-dismissable" ng-show="error" style="width:300px"><i class="fa fa-ban"></i><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{error}}</div>
+                            <div class="box">
+                                
+                                <!-- <div class="box-header">
+                                    <h3 class="box-title">Data Table With Full Features</h3>
+                                </div> -->
+                                 <div class="box-body table-responsive">
+                                    <div class="clearfix" style="padding-bottom:15px;">
+                                            <div class="box-body table-responsive">
+                                            <div class="clearfix">
+                                             <div class="pull-left m_btm15"><a href='/#/offers' align='right'  class="btn btn-primary">Add Offer</a></div>
+                                             <div class="clearfix"></div>
+                               
+                                <form name="searchForm" novalidate ng-submit="applyGlobalSearch()">
+                                    <div class="input-group">
+                                      <span class="input-group-addon">Except for...
+                                   
+                                      </span>
+                                      <input type="text" class="form-control" placeholder="Search term" name="searchTerm" ng-model="globalSearchTerm" required />
+                                      <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                          <span class="glyphicon glyphicon-search"></span>
+                                      </button>
+                                      </span>
+                                    </div>
+                              </form>
+                              </div>                         
+                    <div ng-if="offer.reviews.length > 0">
+                           <form role="form">
+                                  
+                                    <table id="example1" class="table table-bordered table-striped" ng-table="tableParams" show-filter="isFiltersVisible"> 
+                                     <colgroup>
+                                              <col width="5%"/>
+                                              <col width="5%"/>
+                                              <col width="20%"/>
+                                              <col width="20%"/>
+                                              <col width="20%"/>
+                                             
+                                            </colgroup>
+
+                                            <tr ng-repeat = "list in offer.reviews">
+                                            <td data-title="'S.No'">{{$index + 1}}</td>
+
+                                               
+
+                                                <td data-title="'Offer Name'" sortable="'Offer Name'"  align="left">{{list.coupon_name}}</td>
+
+                                                <td data-title="'Start Date'" sortable="'Start Date'" align="left"> {{list.start_date | date:'MMM d, y' : 'IST'}}</td>
+                                                
+                                                <td data-title="'valid Date'" sortable="'Valid Date'"  align="left">{{list.valid_date | date:'MMM d, y' : 'IST'}} </td>
+                                               
+                                               <td data-title="'Action'"> <a href="" title='Delete' ng-click="confirm12(list._id);"><i class="fa fa-trash-o"></i></a> 
+                           
+                                               </td>      
+                                            </tr>       
+                                    </table>   
+                                 </form>
+                           </div>
+                                            <div ng-if="offer.reviews.length == 0">No Record to display</div>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
+                            </div></div>
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+
+
+          
+               
