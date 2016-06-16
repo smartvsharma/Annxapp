@@ -1,0 +1,102 @@
+
+<!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side" ng-init="listreviews()">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                     <h1>
+                       Review Listing          
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="/#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+                                            
+                    </ol>
+                   
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="alert alert-success alert-dismissable" ng-show="error" style="width:300px"><i class="fa fa-ban"></i><button class="close" aria-hidden="true" data-dismiss="alert" type="button"></button>{{error}}</div>
+                    <form name="userform" >
+                    <table class="table table-striped table-bordered" align="center">
+                    <tr>
+                        <td colspan="6" style="text-align:center"><i class="fa fa-search"></i>
+                        <input type="text" class="" placeholder="Search User" ng-model="searchUser"></td>
+                       
+                    </tr>      
+                    <tr>
+                       <td width = "5%" align="center"><input type ="checkbox" ng-model="selectall" ng-click = "selectAll();"></td>
+                         <td width = "5%" >Status</td>
+                        
+                         <td > <a href="" ng-click="sortType = 'firstname';  sortReverse = !sortReverse; toggle(className);">Host Name<span ng-show="sortType == 'first_name'" class="fa {{className}}"></span></a></td>
+                        <td > <a href="" ng-click="sortType = 'lastname';  sortReverse = !sortReverse; toggle(className);">Traveller Name<span ng-show="sortType == 'last_name'" class="fa {{className}}"></span></a></td>
+                         <td > <a href="" ng-click="sortType = 'email';  sortReverse = !sortReverse; toggle(className);">Host Email<span ng-show="sortType == 'email'" class="fa {{className}}"></span></a></td>
+                           
+                          <td > <a href="" ng-click="sortType = 'email';  sortReverse = !sortReverse; toggle(className);">Review<span ng-show="sortType == 'email'" class="fa {{className}}"></span></a></td>
+                
+                    </tr>
+                    
+                    <tr ng-repeat="list in reviews |orderBy:sortType:sortReverse | filter:searchUser  ">
+                      
+                        
+                          <td header="'headerCheckbox.html'"><input type='checkbox' ng-model="checkboxes.items[user._id]" ng-change="toggleSelection(list._id)" /></td>
+                          <td data-title="'Status'" sortable="'status'" align='left'>
+                          <div ng-if="list.status==able"><img src='images/enable.png' border='0'></div>
+                          <div ng-if="list.status == disable"><img src='images/disable.png' border='0'></div>
+                           </td>
+                      
+                         
+                         <td>
+                            {{list.hostid.firstname+" "+list.hostid.lastname}}
+                         </td>
+                          <td>
+                            {{list.travellerid.firstname+' '+list.travellerid.lastname}}
+                         </td>
+                           <td>
+                            {{list.hostid.email}}
+                         </td>
+                         <td>
+                            {{list.review}}
+                         </td>
+             
+                    </tr>
+                   <tr>
+                              <td colspan='2'>
+                                                    
+                              <div class="form-group">
+                               <select class="form-control" name='selectedAction' id='selectedAction'>
+                                      <option value="0">Select</option>
+                                                                <option value="1">Enable</option>
+                                                                <option value="2">Disable</option>
+                                                                <option value="3">Delete</option>
+                                                            </select> 
+                                                    </div>
+                                                </td>
+                                                <td colspan='3'><input type='button' name='go' value='Go' class='btn btn-primary' ng-click="performAction()"></td>
+                                                </form>
+                                            </tr>  
+                                    </table>   
+
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+
+
+            <!-- page script -->
+         <script type="text/ng-template" id="headerCheckbox.html">
+                <input type="checkbox" data-ng-click="toggleSelection(0)" ng-model="checkboxes.checked" class="select-all" value="" />
+            </script>
+         
+<style>
+.statusShow{
+  font-size:25px;
+  color:green;
+}
+.statusHide{
+  font-size:25px;
+  color:#A00000;
+}
+</style>

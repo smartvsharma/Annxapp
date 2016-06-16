@@ -1,0 +1,89 @@
+<aside class="right-side">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                         Add Offers
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="/#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="/#/home"> Home</a></li>
+                                              
+                    </ol>
+                </section>
+                <!-- Main content -->
+            <section class="content" ng-init="offerviews()">
+            <div class="row">
+            <div class="col-md-12">
+                <!-- Custom Tabs -->
+                <div class="nav-tabs-custom">
+                 
+                    <div class="tab-content">
+                      
+                         <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive">  
+                                        <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{error}}</div>                    
+                                        <form role="form">
+                                        <div class="box-body">
+                                        <div class="form-group">
+                                            <label>OfferType</label>
+                                                  <select ng-model="offertype" class="form-control" name="apptype" required>
+
+                                                          <option value="">select Type</option>
+                                                          <option  ng-repeat="details in reviews.reviews"> {{details.offer_name}}</option>
+                                                
+                                                  </select>
+
+                                            <label>coupon Number</label>
+                                            <input type="text"  class="form-control" placeholder="coupon Number" ng-model="category_id" ng-minlength="3" ng-maxlength="20" required>
+
+                                            <label>Offer Name</label>
+                                              <input type="text" name="title" class="form-control" placeholder="offer Nmae" ng-model="coupon_name" >
+
+                                               <label>Discount</label>
+                                              <input type="text" name="title" class="form-control" placeholder="Discount" ng-model="discount" >
+
+                                            <label>Title</label>
+                                              <input type="text" name="title" class="form-control" placeholder="offer Title" ng-model="title" >
+
+                                              
+                                        <label >Starting Date</label>     <label style="margin-left:50%">Valid Date</label>
+
+                                                         <p class="input-group" style="width:47% float:left;">
+																
+                                                                <input type="text" class="form-control" uib-datepicker-popup ng-model="start_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                                <span class="input-group-btn" style="margin-right:1% ">
+                                                                  <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                                </span>
+                                                           
+                                                  
+																
+                                                       
+                                                              <input type="text" class="form-control" uib-datepicker-popup ng-model="valid_date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                              <span class="input-group-btn" style="margin-left:1% ">
+                                                                <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                              </span>
+                                                         </p>
+
+                                            </div>                                          
+                                    </div>
+                                       <div class="form-group" style="padding-bottom: 15px;">        
+                                      <div class="col-sm-offset-4 col-sm-10">
+                                        <input class="btn btn-primary" type="button" name="login" ng-click="addoffer()" value="Submit" ng-disabled="appointmentForm.$invalid">
+                                        <a href="/#/home"><input class="btn btn-primary" type="button"  value="Cancel"></a>
+                                      </div>
+                                    </div>                                
+                                </form>
+										
+                                  </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+				</div>
+			</div>
+			</div>
+			
+  </section><!-- /.content -->
+            </aside><!-- /.right-side -->   

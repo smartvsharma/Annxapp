@@ -1,0 +1,131 @@
+<aside class="right-side" ng-controller='userController'>
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Users
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="/#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="/#/users">Users</a></li> 
+                                     
+                    </ol>
+                </section>
+                <!-- Main content -->
+
+                <section class="content" data-ng-init="findOne()">
+            <div class="row">
+            <div class="col-md-12">
+                <!-- Custom Tabs -->
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li ng-class="{'active': activeTab === 0}" data-ng-click="moveTabContents(0)"><a data-toggle="tab">User</a></li>
+                        <li  data-ng-if="user._id" ng-class="{'active': activeTab === 1}" data-ng-click="moveTabContents(1)"><a   data-toggle="tab">Role</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" ng-class="{'active': activeTab === 0}" id="tab_1">
+                         <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-body table-responsive">  
+                                        <div class="alert alert-danger alert-dismissable" ng-show="message"><button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>{{message}}</div>                    
+                                        
+                                        <form role="form" name="userForm">
+                                        <div class="box-body">
+                                        <div class="form-group">
+                                        
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" ng-model="user.firstname" placeholder="Enter Firstname"ng-minlength="3" ng-maxlength="20" name="firstname" required>
+                       
+                                             <p style="color:brown" ng-show="userForm.firstname.$error.required && userForm.firstname.$touched" class="help-block">First Name is required.</p>
+                               
+
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" i ng-model="user.lastname" placeholder="Enter Lastname" name="lastname">
+                                                <p style="color:brown" ng-show="userForm.lastname.$error.required && userForm.lastname.$touched" class="help-block">Last Name is required.</p>
+
+                                            <label>Email</label>
+                                                <input type="email" class="form-control"  ng-model="user.email" placeholder="Enter Email" name="email" required >
+                                                <span style="color:brown" ng-show="userForm.email.$error.required">*</span>
+                                                <span style="color:brown" ng-show="userForm.email.$error.email">invalid email</span>
+                                            <div ng-hide="user._id">
+                                                
+                                            <label>Password</label>
+                                              <input type="password" class="form-control" name="password" ng-model="user.password" ng-minlength="5" ng-maxlength="20" required>
+                                            
+
+
+                                              <label>Confirm Password</label>
+                                                    <input type="password" class="form-control" name="password2" ng-model="user.password2" required ng-pattern="user.password">
+                                                 
+                                                    <span  style="color:brown" ng-show="userForm.password2.$error.pattern">password do not match</span>
+                                            </div>
+                                              <label>User Type</label>
+
+                                                  <select ng-model="user.user_type" class="form-control" name="apptype" required>
+
+                                                          <option value="">select Type</option>
+                                                          <option  ng-repeat="details in getusertype.reviews"> {{details.role}}</option>
+                                                
+                                                  </select>
+                                                  <p style="color:brown" ng-show="userForm.apptype.$error.required && userForm.apptype.$touched" class="help-block">user type is required.</p>
+
+                                               <label >Gender</label>
+                                                 <div>
+                                                       <input ng-model="user.gender" type="radio" name="gender" value="M" required>
+                                                        Male
+                                                        <input ng-model="user.gender" type="radio" name="gender" value="F">
+                                                        Female
+                                                   </div>
+
+                                             <label>Address</label>
+                                                  <input type="text" class="form-control"  ng-model="user.address" placeholder="Enter address" >
+
+                                             <label>City</label>
+                                            <input type="text" class="form-control"  ng-model="user.city" placeholder="Enter city"  name="city" required>
+                                                <p style="color:brown" ng-show="userForm.city.$error.required && userForm.city.$touched" class="help-block">City Name is required.</p>
+
+
+
+                                             <label>State</label>
+                                            <input type="text" class="form-control"  ng-model="user.state" placeholder="Enter state" name="state" required >
+                                             
+                                            <p style="color:brown" ng-show="userForm.state.$error.required && userForm.state.$touched" class="help-block">state Name is required.</p>
+
+                                             <label>Zip Code</label>
+                                            <input type="Number" class="form-control"  ng-model="user.zip_code" ng-pattern="/^(\d)+$/" placeholder="Enter zip code" name="nums" ng-maxlength="6" ng-minlength="6">
+                                              <span style="color:brown" class="alert" ng-show="userForm.nums.$error.pattern">Numbers only, please.</span>
+                                              <span style="color:brown" ng-show="userForm.nums.$error.minlength || userForm.nums.$error.maxlength && form.username.$dirty">zip code must be 6 digit only.</span>
+                                    
+                                </form> 
+
+                                  </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div><!-- /.tab-pane -->
+        
+                                             
+                  </div><!-- /.tab-pane -->
+              </div><!-- /.tab-content -->
+          </div>
+          <div>
+                                                   <div class="form-group" style="padding-bottom: 15px;">        
+                                                    <div class="col-sm-offset-5 col-sm-10">
+                                                      <input class="btn btn-primary" type="button" name="login" ng-click="updateData(0)" value="Submit" ng-disabled="userform.$invalid">
+                                                      <a href="/#/users"><input class="btn btn-primary" type="button" name="cancel" value="Cancel"></a>
+                                                  </div>
+                                              </div>
+                                            </div>
+
+          <!-- <div class="box-footer clearfix no-border">
+                                                  <!-- <button data-ng-if="!user._id" class=" btn m_lft5  btn-warning pull-right" data-ng-click="updateData(0)">Save & Continue</button> -->
+                                                <!--    <button data-ng-if="user._id && activeTab != 1" class="btn m_lft5 btn-warning pull-right" data-ng-click="updateData(0)">Save</button>
+ -->
+                                                  <!-- <button data-ng-if="user._id" class="btn m_lft5 btn-warning pull-right" data-ng-click="updateData(1)">Save & Exit</button> -->
+                                             <!--  </div> -->
+      </div>
+  </div>
+
+  </section><!-- /.content -->
+            </aside><!-- /.right-side -->   

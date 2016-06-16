@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/bigdata/public_html/annxApp/annxAppServer
+
+npm app.js 
